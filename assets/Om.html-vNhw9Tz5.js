@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-79cb3882","path":"/Om.html","title":"Om","lang":"sv-SE","frontmatter":{"title":"Om","description":"Sägnen om brunfilm"},"headers":[],"git":{},"filePathRelative":"Om.md"}');export{t as data};
