@@ -1,37 +1,86 @@
 # EditorConfig (is awesome): http://EditorConfig.org
-
-# * top-most EditorConfig file
 root = true
 
-# default style settings
 [*]
-charset = utf-8
-end_of_line = lf
-indent_size = 4
 indent_style = space
-insert_final_newline = true
-trim_trailing_whitespace = true
-lineWidth = 99
-
-# Makefiles require tab indentation
-[{{M,m,GNU}akefile{,.*},*.mak,*.mk}]
-indent_style = tab
+indent_size = 4
+tab_width = 4
 end_of_line = lf
+charset = utf-8
+spelling_language = en_GB
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 120
+quote_type = double
+curly_bracket_next_line = false
+spaces_around_operators = true
+spaces_around_brackets = true
+indent_brace_style = "K&R"
 
-# DOS/Win requires BAT/CMD files to have CRLF newlines
-[*.{[Bb][Aa][Tt],[Cc][Mm][Dd]}]
-end_of_line = crlf
-
-[*.{yml, yaml}]
+# YAML
+[*.{yml,yaml}]
 indent_size = 2
 
-[[shell][bash]]
-indent_style = space
-indent_size = 4
+# Makefiles require tab indentation
+[{{GNUm,M,m}akefile{,.*},*.mak,*.mk}]
+indent_style = tab
+# end_of_line = lf
+
+# BAT/CMD - *.{[Bb][Aa][Tt],[Cc][Mm][Dd]}
+# Powershell - *.ps{1,c,d,m,s,r}{,xml,1,c}
+# DOS/Win requires files to have CRLF newlines
+[*.{[Bb][Aa][Tt],[Cc][Mm][Dd],ps{1,c,d,m,s,r}{,xml,1,c}}]
+end_of_line = crlf
+
+# shell,bash
+[*.{sh,bash{,rc}}]
+# indent_style = space
+# indent_size = 4
 binary_next_line   = true
 switch_case_indent = true
 space_redirects    = true
 keep_padding       = true
 function_next_line = true
 
-
+# Glob tester: https://toools.cloud/miscellaneous/glob-tester
+# Test files:
+# /script/shell/test.sh
+# /script/powershell/test.pssc
+# /script/powershell/test.psrc
+# /script/powershell/test.psm1
+# /script/powershell/test.psd1
+# /script/powershell/test.psc1
+# /script/powershell/test.ps1xml
+# /script/powershell/test.ps1
+# /script/powershell/test.cdxml
+# /script/bat/test.BAT
+# /script/bat/test.BAt
+# /script/bat/test.Bat
+# /script/bat/test.bAT
+# /script/bat/test.baT
+# /script/bat/test.bat
+# /script/bash/test.bashrc
+# /script/bash/test.bash
+# /markup/yaml/test.yml
+# /markup/yaml/test.yaml
+# /build/make/test.mk
+# /build/make/test.mak
+# /build/make/Makefile.test
+# /build/make/makefile.test
+# /build/make/Makefile
+# /build/make/makefile
+# /build/make/GNUmakefile
+# /!random/test.tsx
+# /!random/test.ts
+# /!random/test.svg
+# /!random/test.scss
+# /!random/test.png
+# /!random/test.md
+# /!random/test.json
+# /!random/test.js
+# /!random/test.jpg
+# /!random/test.ico
+# /!random/test.html
+# /!random/test.css
+# /!random/test.
+# /!random/.gitignore

@@ -1,0 +1,77 @@
+name: Default Workflow
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: npm
+      - name: Run Tests
+        run: npm test
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v3.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build with VitePress
+        run: npm run build
+      - name: SonarQube Quality Gate check
+        id: sonarqube-quality-gate-check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        with:
+          scanMetadataReportFile: target/sonar/report-task.txt # TODO: Verify that this is the correct file path
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        if: ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status == 'PASSED' }}
+        with:
+          name: homepage
+          path: docs/.vitepress/dist
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: build
+    if: ${{ success() && github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: homepage
+          path: dist
+      - name: Publish
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: brunfilm
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
