@@ -38,7 +38,7 @@
         "npm-run-all2": "^6.2.3",
         "prettier": "^3.3.3",
         "sonarqube-scanner": "^4.2.3",
-        "vitepress": "1.4.0",
+        "vitepress": "1.4.1",
         "vitest": "^2.1.2"
     }
 }
