@@ -37,7 +37,7 @@
         "jsdoc": "^4.0.3",
         "npm-run-all2": "^6.2.3",
         "prettier": "^3.3.3",
-        "sonarqube-scanner": "^4.2.3",
+        "sonarqube-scanner": "^4.2.5",
         "vitepress": "1.4.0",
         "vitest": "^2.1.2"
     }
