@@ -42,7 +42,7 @@
         "jsdoc": "^4.0.4",
         "lint-staged": "^15.2.10",
         "npm-run-all2": "^7.0.1",
-        "vitepress": "1.4.1"
+        "vitepress": "1.5.0"
     },
     "peerDependencies": {
         "eslint": ">= 9.13.0"
