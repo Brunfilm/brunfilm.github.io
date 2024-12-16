@@ -33,7 +33,7 @@
         "test:ui": "npx vitest --ui --coverage.enabled"
     },
     "devDependencies": {
-        "@eslint/js": "^9.15.0",
+        "@eslint/js": "^9.17.0",
         "@eslint/json": "^0.9.0",
         "@eslint/markdown": "^6.2.1",
         "@vitest/coverage-v8": "^2.1.5",
