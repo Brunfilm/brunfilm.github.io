@@ -63,7 +63,7 @@
         "npm-run-all2": "7.0.2",
         "prettier-plugin-vitepress": "0.0.8",
         "typescript": "5.7.3",
-        "typescript-eslint": "8.19.1",
+        "typescript-eslint": "8.20.0",
         "vue-tsc": "2.2.0"
     },
     "peerDependencies": {
