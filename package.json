@@ -59,7 +59,7 @@
         "globals": "15.14.0",
         "iconify-icon": "2.3.0",
         "jsdoc": "4.0.4",
-        "lint-staged": "15.3.0",
+        "lint-staged": "15.4.0",
         "npm-run-all2": "7.0.2",
         "prettier-plugin-vitepress": "0.0.8",
         "typescript": "5.7.3",
