@@ -1,55 +1,45 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig.json",
     "compilerOptions": {
-        "allowImportingTsExtensions": true,
-        "allowJs": true,
-        "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
         "declaration": true,
+        "declarationDir": "./src/.vitepress/dist/types",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "importsNotUsedAsValues": "remove",
         "isolatedModules": true,
         "jsx": "preserve",
-        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "lib": ["ESNext", "DOM"],
         "module": "ESNext",
         "moduleResolution": "node",
-        "noEmit": true,
-        "noUnusedLocals": true,
+        "outDir": "./src/.vitepress/dist",
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["./src/.vitepress/*"],
+            "vite": ["./node_modules/vite"]
         },
-        "preserveConstEnums": true,
-        "removeComments": false,
         "resolveJsonModule": true,
+        "rootDir": ".",
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
-        "strictFunctionTypes": true,
-        "strictNullChecks": true,
         "target": "ESNext",
-        "types": ["vite/client", "node"],
-        "verbatimModuleSyntax": true
+        "types": ["node", "vitepress", "vite/client", "@types/node"],
+        "useDefineForClassFields": true
     },
-    "exclude": ["**/*.spec.ts", "**/node_modules/**", "**/dist/**", "**/cache/**", "coverage/", "tests/"],
+    "exclude": ["./src/.vitepress/dist/", "./src/.vitepress/cache/"],
     "include": [
-        "**/*.d.ts",
-        "**/*.mjs",
-        "**/*.ts",
-        "src/**/*.ts",
-        "src/**/*.vue",
-        "src/**/*.cjs",
-        "src/**/*.js",
-        "src/**/*.md",
-        "src/**/*.tsx",
-        ".vitepress/*.ts",
-        ".vitepress/**/*.ts",
-        ".vitepress/**/*.vue",
-        ".vitepress/**/*.cjs",
-        ".vitepress/**/*.js",
-        ".vitepress/**/*.md",
-        ".vitepress/**/*.tsx"
+        "./src/**/*.ts",
+        "./src/**/*.d.ts",
+        "./src/**/*.vue",
+        "./src/.vitepress/**/*.ts",
+        "./src/.vitepress/**/*.d.ts",
+        "./src/.vitepress/**/*.vue"
     ],
-    "vueCompilerOptions": {
-        "vitePressExtensions": [".md"]
-    }
+    "references": [
+        {
+            "path": "./tsconfig.eslint.json"
+        }
+        // {
+        //     "path": "./tsconfig.node.json"
+        // }
+    ]
 }

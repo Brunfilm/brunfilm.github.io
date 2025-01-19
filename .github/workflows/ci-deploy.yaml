@@ -2,10 +2,9 @@ name: CI Deploy
 
 on:
   push:
-    branches: main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 concurrency:
@@ -17,7 +16,7 @@ permissions:
   pages: read
 
 env:
-  artifactPath: ./.vitepress/dist
+  artifactPath: ./src/.vitepress/dist
 
 jobs:
   build:

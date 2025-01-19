@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig.json",
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "composite": true,
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "types": ["vite/client", "@types/node"]
+    },
+    "exclude": [
+        "node_modules/",
+        "src/.vitepress/dist/",
+        "tests/",
+        "src/.vitepress/cache/",
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.vue",
+        "src/.vitepress/**/*.ts",
+        "src/.vitepress/**/*.d.ts",
+        "src/.vitepress/**/*.vue"
+    ]
+}

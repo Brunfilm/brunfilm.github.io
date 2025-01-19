@@ -1,51 +1,63 @@
-// @ts-check
-import eslintJs from "@eslint/js";
-import eslintJson from "@eslint/json";
+import js from "@eslint/js";
+import json from "@eslint/json";
+import markdown from "@eslint/markdown";
 import vitestEslintPlugin from "@vitest/eslint-plugin";
 import pluginOxlint from "eslint-plugin-oxlint";
 import pluginPrettier from "eslint-plugin-prettier/recommended";
 import pluginVue from "eslint-plugin-vue";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
-// import eslintMarkdown from "@eslint/markdown";
 // import { pluginChaiFriendly } from "eslint-plugin-chai-friendly";
-// import { pluginCypress } from "eslint-plugin-cypress/flat";
-// import { pluginMocha } from "eslint-plugin-mocha";
+// import { pluginCypress } from "eslint-plugin-cypress/flat"
+// import { pluginMocha } from "eslint-plugin-mocha"
 
 export default tsEslint.config(
-    {
-        name: "Global include and exclude",
-        ignores: ["**/dist/**", "**/cache/**", "**/dist-ssr/**", "**/coverage/**", "**/tests/**", "package-lock.json"],
-    },
+    ...tsEslint.configs.recommendedTypeChecked,
+    ...tsEslint.configs.strictTypeChecked,
+    ...tsEslint.configs.stylisticTypeChecked,
+    pluginVue.configs["flat/recommended"],
+    // pluginChaiFriendly.configs.recommendedFlat,
     // pluginMocha.configs.flat.recommended,
     // pluginCypress.configs.recommended,
-    // pluginChaiFriendly.configs.recommendedFlat,
-    // eslintMarkdown.configs.recommended,
     {
-        name: "Globals",
+        name: "TypeScript/Config",
+
         languageOptions: {
-            globals: globals.browser,
-        },
-    },
-    {
-        name: "Vue-Js-Ts/Recommended",
-        extends: [
-            eslintJs.configs.recommended,
-            ...tsEslint.configs.recommendedTypeChecked,
-            ...pluginVue.configs["flat/recommended"],
-        ],
-        files: ["**/*.ts", "**/*.vue", "**/*.js", "**/*.mjs"],
-        languageOptions: {
-            ecmaVersion: "latest",
-            sourceType: "module",
             globals: globals.browser,
             parserOptions: {
-                parser: tsEslint.parser,
+                sourceType: "module",
                 projectService: true,
                 tsconfigRootDir: import.meta.dirname,
-                extraFileExtensions: [".vue"],
+                ecmaVersion: "latest",
+                parser: ["@typescript-eslint/parser"],
+                project: ["./tsconfig.json", "./tsconfig.eslint.json"],
+                extraFileExtensions: ["*.vue"],
             },
         },
+        files: ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
+        ignores: [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/cache/**",
+            "**/dist-ssr/**",
+            "**/coverage/**",
+            "**/tests/**",
+            "package-lock.json",
+        ],
+    },
+    {
+        name: "Eslint/Recommended",
+        // extends: [],
+        ...js.configs.recommended,
+        files: ["**/*.js", "**/*.mjs", "**/*.md/*.js"],
+    },
+    {
+        name: "Markdown/Processor",
+        plugins: {
+            markdown,
+        },
+        files: ["**/*.md", "**/*.md/*.md"],
+        processor: "markdown/markdown",
     },
     {
         name: "Vitest/Recommended",
@@ -53,13 +65,31 @@ export default tsEslint.config(
         ...vitestEslintPlugin.configs.env,
         files: ["tests/**", "src/**/__tests__/*"],
     },
+
+    // {
+    //     name: "Vue-Js-Ts/Recommended",
+    //     extends: [
+    //         js.configs.recommended,
+    //         ...tsEslint.configs.recommendedTypeChecked,
+    //         ...pluginVue.configs["flat/recommended"],
+    //     ],
+    //     files: ["**/*.ts", "**/*.vue", "**/*.js", "**/*.mjs"],
+    //     // languageOptions: {
+    //     //     globals: globals.browser,
+    //     //     parserOptions: {
+    //     //         ecmaVersion: "latest",
+    //     //         parser: ["vue-eslint-parser", "@typescript-eslint/parser"],
+    //     //         project: "./tsconfig.json",
+    //     //     },
+    //     // },
+    // },
+
     // {
     // name: "Cypress/Recommended",
     // pluginCypress.configs.recommended,
     // files: ["cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}", "cypress/support/**/*.{js,ts,jsx,tsx}"],
     // },
     {
-        // name: "Oxlint/Recommended",
         ...pluginOxlint.configs["flat/recommended"],
     },
     {
@@ -67,19 +97,19 @@ export default tsEslint.config(
         files: ["**/*.json"],
         ignores: ["package-lock.json"],
         language: "json/json",
-        ...eslintJson.configs.recommended,
+        ...json.configs.recommended,
     },
     {
         name: "JsonC/Recommended",
         files: ["**/*.jsonc", ".vscode/*.json"],
         language: "json/jsonc",
-        ...eslintJson.configs.recommended,
+        ...json.configs.recommended,
     },
     {
         name: "Json5/Recommended",
         files: ["**/*.json5"],
         language: "json/json5",
-        ...eslintJson.configs.recommended,
+        ...json.configs.recommended,
     },
     {
         name: "Prettier/Recommended",
@@ -174,25 +204,12 @@ export default tsEslint.config(
         },
     },
     {
-        name: "Rules/Deprecated",
+        name: "BrownRules/Deprecated",
         rules: {
             "vue/component-tags-order": "off",
         },
     },
 );
-
-// Remember to update your config when adding to eslint.
-// {
-//   "eslint.validate": [
-//     "javascript",
-//     "javascriptreact",
-//     "json",
-//     "jsonc",
-//     "json5",
-//     "yaml",
-//     "toml"
-//   ]
-// }
 
 // Add to eslint when released
 // npm install @eslint/css -D

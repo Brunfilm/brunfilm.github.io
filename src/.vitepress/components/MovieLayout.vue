@@ -4,7 +4,8 @@
             <h1>{{ movie.title }}</h1>
             <div :class="$style.movieHero">
                 <div :class="$style.moviePosterContainer">
-                    <img :src="movie.poster" :alt="movie.title + ' movie poster'" :class="$style.moviePoster" />
+                    <img :src="'/posters/' + movie.poster" :alt="movie.title + ' movie poster'"
+                        :class="$style.moviePoster" />
                 </div>
                 <div :class="$style.movieMeta">
                     <blockquote :class="$style.description">
@@ -22,7 +23,7 @@
         </header>
 
         <section :class="$style.movieDescription">
-            <h2>Beskrivning</h2>
+            <h2>Beskrivning slot</h2>
             <div :class="$style.content">
                 <slot name="beskrivning"></slot>
             </div>
@@ -49,10 +50,11 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { Movie } from "../data/movies.data";
 
 const props = defineProps({
     movie: {
-        type: Object,
+        type: Object as () => Movie,
         required: true,
     },
 });
