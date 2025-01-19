@@ -1,7 +1,7 @@
 name: Scorecard analysis workflow
 on:
   push:
-    branches: ["main", "renovate/**"]
+    branches: ["main"]
   pull_request:
     branches: ["main"]
   workflow_dispatch:
