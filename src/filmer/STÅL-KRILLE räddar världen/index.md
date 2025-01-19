@@ -17,4 +17,3 @@ dvd:
     <p>Med sin unika animation och hjärtevärmande berättelse, tar filmen oss med på ett äventyr som visar att även den minsta kyckling kan göra stor skillnad i världen.</p>
   </template>
 </MovieLayout>
-\r\n
