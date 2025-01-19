@@ -1,22 +1,15 @@
-import { defineConfig, type DefaultTheme, type UserConfig } from "vitepress";
+import { resolve } from "path";
+import { defineConfig } from "vitepress";
 
-const config: UserConfig<DefaultTheme.Config> = {
+export default defineConfig({
     lang: "sv-SE",
     title: "Brunfilm",
     description: "Sagan om Brunfilm.",
-    srcDir: "./src",
+    titleTemplate: false,
     head: [["link", { rel: "icon", href: "/favicon.ico" }]],
-    markdown: {
-        image: {
-            lazyLoading: true, // image lazy loading is disabled by default
-        },
-    },
-    sitemap: {
-        hostname: "https://www.brunfilm.com",
-    },
     themeConfig: {
         logo: { light: "/logo-dark.svg", dark: "/logo-light.svg", alt: "Brunfilm logo" },
-        siteTitle: false,
+        siteTitle: "Brunfilm",
         nav: [
             { text: "Hem", link: "/" },
             { text: "Historia", link: "/historia/" },
@@ -32,9 +25,20 @@ const config: UserConfig<DefaultTheme.Config> = {
             text: "Edit this page on GitHub",
         },
     },
-    vite: {
-        plugins: [],
+    markdown: {
+        image: {
+            lazyLoading: true, // image lazy loading is disabled by default
+        },
     },
-};
-
-export default defineConfig(config);
+    sitemap: {
+        hostname: "https://www.brunfilm.com",
+    },
+    vite: {
+        resolve: {
+            alias: {
+                "@/*": resolve(__dirname, "./src/.vitepress/*"),
+                "@": resolve(__dirname, "./"),
+            },
+        },
+    },
+});
