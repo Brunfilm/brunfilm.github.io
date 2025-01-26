@@ -100,7 +100,7 @@
         "jsdoc": "4.0.4",
         "lint-staged": "15.4.1",
         "markdownlint": "0.37.4",
-        "markdownlint-cli": "0.43.0",
+        "markdownlint-cli": "0.44.0",
         "npm-run-all2": "7.0.2",
         "prettier-plugin-vitepress": "0.0.8",
         "rimraf": "6.0.1",
