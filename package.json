@@ -85,7 +85,7 @@
         "@vitest/eslint-plugin": "1.1.28",
         "@vue/tsconfig": "0.7.0",
         "autoprefixer": "10.4.20",
-        "eslint": "9.20.0",
+        "eslint": "9.20.1",
         "eslint-config-prettier": "10.0.1",
         "eslint-plugin-chai-friendly": "1.0.1",
         "eslint-plugin-cypress": "4.1.0",
