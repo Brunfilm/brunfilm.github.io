@@ -110,7 +110,7 @@
         "vite": "6.2.0",
         "vite-plugin-eslint": "1.8.1",
         "vitepress": "1.6.3",
-        "vue-eslint-parser": "9.4.3",
+        "vue-eslint-parser": "10.1.1",
         "vue-tsc": "2.2.8"
     },
     "peerDependencies": {
