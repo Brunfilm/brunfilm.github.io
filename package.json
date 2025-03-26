@@ -104,7 +104,7 @@
         "npm-run-all2": "7.0.2",
         "prettier-plugin-vitepress": "0.0.8",
         "rimraf": "6.0.1",
-        "stylelint": "16.15.0",
+        "stylelint": "16.17.0",
         "typescript": "5.8.2",
         "typescript-eslint": "8.26.1",
         "vite": "6.2.1",
