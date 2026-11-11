@@ -102,7 +102,7 @@
         "markdownlint": "0.37.4",
         "markdownlint-cli": "0.44.0",
         "npm-run-all2": "7.0.2",
-        "prettier-plugin-vitepress": "0.0.8",
+        "prettier-plugin-vitepress": "0.0.10",
         "rimraf": "6.0.1",
         "stylelint": "16.15.0",
         "typescript": "5.8.2",
